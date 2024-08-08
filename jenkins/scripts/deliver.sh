@@ -24,11 +24,13 @@ set +x
 
 echo 'The following command runs and outputs the execution of your Java'
 echo 'application (which Jenkins built using Maven) to the Jenkins UI.'
-echo "Checking for JAR file at target/${NAME}-${VERSION}.jar"
-if [ -f "target/${NAME}-${VERSION}.jar" ]; then
+JAR_PATH="$(pwd)/target/${NAME}-${VERSION}.jar"
+echo "Checking for JAR file at ${JAR_PATH}"
+if [ -f "${JAR_PATH}" ]; then
   echo "JAR file exists, running it."
-  java -jar target/${NAME}-${VERSION}.jar
+  java -jar "${JAR_PATH}"
 else
   echo "JAR file not found. Please check the file name and build process."
   exit 1
 fi
+
