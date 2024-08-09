@@ -22,8 +22,8 @@ VERSION=$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version)
 echo "Project Version: ${VERSION}"
 set +x
 
-# Update JAR path based on known file name
-JAR_FILE="my-app-1.0-SNAPSHOT.jar"
+# Construct the JAR file name dynamically
+JAR_FILE="${NAME}-${VERSION}.jar"
 JAR_PATH="target/${JAR_FILE}"
 
 echo "Checking for JAR file at ${JAR_PATH}"
