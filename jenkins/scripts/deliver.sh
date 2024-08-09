@@ -22,9 +22,10 @@ VERSION=$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version)
 echo "Project Version: ${VERSION}"
 set +x
 
-echo 'The following command runs and outputs the execution of your Java'
-echo 'application (which Jenkins built using Maven) to the Jenkins UI.'
-JAR_PATH="$(pwd)/target/${NAME}-${VERSION}.jar"
+# Update JAR path based on known file name
+JAR_FILE="my-app-1.0-SNAPSHOT.jar"
+JAR_PATH="target/${JAR_FILE}"
+
 echo "Checking for JAR file at ${JAR_PATH}"
 if [ -f "${JAR_PATH}" ]; then
   echo "JAR file exists, running it."
@@ -33,4 +34,3 @@ else
   echo "JAR file not found. Please check the file name and build process."
   exit 1
 fi
-
